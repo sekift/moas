@@ -1,0 +1,23 @@
+#线上环境配置
+spring:
+  application:
+    name: moas-back
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/topnews
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    #type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  typeAliasesPackage: com.moas.www.model
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    call-setters-on-nulls: true
+    #输出sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#唯一编号生成器
+snowflakeIdWorker:
+  workerId: 0
+  datacenterId: 1

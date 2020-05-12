@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.moas.crawler.dao.TopNewsUrlMapper" >
+  <resultMap id="BaseResultMap" type="com.moas.crawler.model.TopNewsUrl" >
+    <id column="newsid" property="newsid" jdbcType="INTEGER" />
+    <result column="newsname" property="newsname" jdbcType="VARCHAR" />
+    <result column="newsurl" property="newsurl" jdbcType="VARCHAR" />
+    <result column="newsproduct" property="newsproduct" jdbcType="VARCHAR" />
+    <result column="newstype" property="newstype" jdbcType="TINYINT" />
+    <result column="cron" property="cron" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="cookie" property="cookie" jdbcType="VARCHAR" />
+    <result column="header" property="header" jdbcType="VARCHAR" />
+    <result column="param" property="param" jdbcType="VARCHAR" />
+    <result column="requesttype" property="requesttype" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    newsid, newsname, newsurl, newsproduct, newstype, cron, status, cookie, header, param, 
+    requesttype
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.moas.crawler.model.TopNewsUrlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from top_news_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from top_news_url
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from top_news_url
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.moas.crawler.model.TopNewsUrlExample" >
+    delete from top_news_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.moas.crawler.model.TopNewsUrl" >
+    insert into top_news_url (newsid, newsname, newsurl, 
+      newsproduct, newstype, cron, 
+      status, cookie, header, 
+      param, requesttype)
+    values (#{newsid,jdbcType=INTEGER}, #{newsname,jdbcType=VARCHAR}, #{newsurl,jdbcType=VARCHAR}, 
+      #{newsproduct,jdbcType=VARCHAR}, #{newstype,jdbcType=TINYINT}, #{cron,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{cookie,jdbcType=VARCHAR}, #{header,jdbcType=VARCHAR}, 
+      #{param,jdbcType=VARCHAR}, #{requesttype,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.moas.crawler.model.TopNewsUrl" >
+    insert into top_news_url
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsid != null" >
+        newsid,
+      </if>
+      <if test="newsname != null" >
+        newsname,
+      </if>
+      <if test="newsurl != null" >
+        newsurl,
+      </if>
+      <if test="newsproduct != null" >
+        newsproduct,
+      </if>
+      <if test="newstype != null" >
+        newstype,
+      </if>
+      <if test="cron != null" >
+        cron,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cookie != null" >
+        cookie,
+      </if>
+      <if test="header != null" >
+        header,
+      </if>
+      <if test="param != null" >
+        param,
+      </if>
+      <if test="requesttype != null" >
+        requesttype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsid != null" >
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="newsname != null" >
+        #{newsname,jdbcType=VARCHAR},
+      </if>
+      <if test="newsurl != null" >
+        #{newsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="newsproduct != null" >
+        #{newsproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="newstype != null" >
+        #{newstype,jdbcType=TINYINT},
+      </if>
+      <if test="cron != null" >
+        #{cron,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="cookie != null" >
+        #{cookie,jdbcType=VARCHAR},
+      </if>
+      <if test="header != null" >
+        #{header,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null" >
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttype != null" >
+        #{requesttype,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.moas.crawler.model.TopNewsUrlExample" resultType="java.lang.Integer" >
+    select count(*) from top_news_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update top_news_url
+    <set >
+      <if test="record.newsid != null" >
+        newsid = #{record.newsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.newsname != null" >
+        newsname = #{record.newsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsurl != null" >
+        newsurl = #{record.newsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsproduct != null" >
+        newsproduct = #{record.newsproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newstype != null" >
+        newstype = #{record.newstype,jdbcType=TINYINT},
+      </if>
+      <if test="record.cron != null" >
+        cron = #{record.cron,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.cookie != null" >
+        cookie = #{record.cookie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.header != null" >
+        header = #{record.header,jdbcType=VARCHAR},
+      </if>
+      <if test="record.param != null" >
+        param = #{record.param,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requesttype != null" >
+        requesttype = #{record.requesttype,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update top_news_url
+    set newsid = #{record.newsid,jdbcType=INTEGER},
+      newsname = #{record.newsname,jdbcType=VARCHAR},
+      newsurl = #{record.newsurl,jdbcType=VARCHAR},
+      newsproduct = #{record.newsproduct,jdbcType=VARCHAR},
+      newstype = #{record.newstype,jdbcType=TINYINT},
+      cron = #{record.cron,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      cookie = #{record.cookie,jdbcType=VARCHAR},
+      header = #{record.header,jdbcType=VARCHAR},
+      param = #{record.param,jdbcType=VARCHAR},
+      requesttype = #{record.requesttype,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.moas.crawler.model.TopNewsUrl" >
+    update top_news_url
+    <set >
+      <if test="newsname != null" >
+        newsname = #{newsname,jdbcType=VARCHAR},
+      </if>
+      <if test="newsurl != null" >
+        newsurl = #{newsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="newsproduct != null" >
+        newsproduct = #{newsproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="newstype != null" >
+        newstype = #{newstype,jdbcType=TINYINT},
+      </if>
+      <if test="cron != null" >
+        cron = #{cron,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="cookie != null" >
+        cookie = #{cookie,jdbcType=VARCHAR},
+      </if>
+      <if test="header != null" >
+        header = #{header,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null" >
+        param = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttype != null" >
+        requesttype = #{requesttype,jdbcType=TINYINT},
+      </if>
+    </set>
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.moas.crawler.model.TopNewsUrl" >
+    update top_news_url
+    set newsname = #{newsname,jdbcType=VARCHAR},
+      newsurl = #{newsurl,jdbcType=VARCHAR},
+      newsproduct = #{newsproduct,jdbcType=VARCHAR},
+      newstype = #{newstype,jdbcType=TINYINT},
+      cron = #{cron,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      cookie = #{cookie,jdbcType=VARCHAR},
+      header = #{header,jdbcType=VARCHAR},
+      param = #{param,jdbcType=VARCHAR},
+      requesttype = #{requesttype,jdbcType=TINYINT}
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </update>
+</mapper>

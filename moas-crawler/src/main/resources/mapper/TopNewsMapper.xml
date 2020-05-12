@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.moas.crawler.dao.TopNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.moas.crawler.model.TopNews" >
+    <id column="topid" property="topid" jdbcType="BIGINT" />
+    <result column="md5" property="md5" jdbcType="VARCHAR" />
+    <result column="sortindex" property="sortindex" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="toprank" property="toprank" jdbcType="INTEGER" />
+    <result column="linkurl" property="linkurl" jdbcType="VARCHAR" />
+    <result column="imageurl" property="imageurl" jdbcType="VARCHAR" />
+    <result column="sourceid" property="sourceid" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="posttime" property="posttime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="visits" property="visits" jdbcType="INTEGER" />
+    <result column="noteint" property="noteint" jdbcType="INTEGER" />
+    <result column="notestring" property="notestring" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    topid, md5, sortindex, content, toprank, linkurl, imageurl, sourceid, source, posttime, 
+    createtime, updatetime, status, visits, noteint, notestring, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.moas.crawler.model.TopNewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from top_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from top_news
+    where topid = #{topid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from top_news
+    where topid = #{topid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.moas.crawler.model.TopNewsExample" >
+    delete from top_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.moas.crawler.model.TopNews" >
+    insert into top_news (topid, md5, sortindex, 
+      content, toprank, linkurl, 
+      imageurl, sourceid, source, 
+      posttime, createtime, updatetime, 
+      status, visits, noteint, 
+      notestring, remark)
+    values (#{topid,jdbcType=BIGINT}, #{md5,jdbcType=VARCHAR}, #{sortindex,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{toprank,jdbcType=INTEGER}, #{linkurl,jdbcType=VARCHAR}, 
+      #{imageurl,jdbcType=VARCHAR}, #{sourceid,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, 
+      #{posttime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{visits,jdbcType=INTEGER}, #{noteint,jdbcType=INTEGER}, 
+      #{notestring,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.moas.crawler.model.TopNews" >
+    insert into top_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topid != null" >
+        topid,
+      </if>
+      <if test="md5 != null" >
+        md5,
+      </if>
+      <if test="sortindex != null" >
+        sortindex,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="toprank != null" >
+        toprank,
+      </if>
+      <if test="linkurl != null" >
+        linkurl,
+      </if>
+      <if test="imageurl != null" >
+        imageurl,
+      </if>
+      <if test="sourceid != null" >
+        sourceid,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="posttime != null" >
+        posttime,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="visits != null" >
+        visits,
+      </if>
+      <if test="noteint != null" >
+        noteint,
+      </if>
+      <if test="notestring != null" >
+        notestring,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topid != null" >
+        #{topid,jdbcType=BIGINT},
+      </if>
+      <if test="md5 != null" >
+        #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="toprank != null" >
+        #{toprank,jdbcType=INTEGER},
+      </if>
+      <if test="linkurl != null" >
+        #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null" >
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="visits != null" >
+        #{visits,jdbcType=INTEGER},
+      </if>
+      <if test="noteint != null" >
+        #{noteint,jdbcType=INTEGER},
+      </if>
+      <if test="notestring != null" >
+        #{notestring,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.moas.crawler.model.TopNewsExample" resultType="java.lang.Integer" >
+    select count(*) from top_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update top_news
+    <set >
+      <if test="record.topid != null" >
+        topid = #{record.topid,jdbcType=BIGINT},
+      </if>
+      <if test="record.md5 != null" >
+        md5 = #{record.md5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortindex != null" >
+        sortindex = #{record.sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toprank != null" >
+        toprank = #{record.toprank,jdbcType=INTEGER},
+      </if>
+      <if test="record.linkurl != null" >
+        linkurl = #{record.linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl != null" >
+        imageurl = #{record.imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceid != null" >
+        sourceid = #{record.sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posttime != null" >
+        posttime = #{record.posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.visits != null" >
+        visits = #{record.visits,jdbcType=INTEGER},
+      </if>
+      <if test="record.noteint != null" >
+        noteint = #{record.noteint,jdbcType=INTEGER},
+      </if>
+      <if test="record.notestring != null" >
+        notestring = #{record.notestring,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update top_news
+    set topid = #{record.topid,jdbcType=BIGINT},
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      sortindex = #{record.sortindex,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      toprank = #{record.toprank,jdbcType=INTEGER},
+      linkurl = #{record.linkurl,jdbcType=VARCHAR},
+      imageurl = #{record.imageurl,jdbcType=VARCHAR},
+      sourceid = #{record.sourceid,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      posttime = #{record.posttime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT},
+      visits = #{record.visits,jdbcType=INTEGER},
+      noteint = #{record.noteint,jdbcType=INTEGER},
+      notestring = #{record.notestring,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.moas.crawler.model.TopNews" >
+    update top_news
+    <set >
+      <if test="md5 != null" >
+        md5 = #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        sortindex = #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="toprank != null" >
+        toprank = #{toprank,jdbcType=INTEGER},
+      </if>
+      <if test="linkurl != null" >
+        linkurl = #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null" >
+        imageurl = #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceid != null" >
+        sourceid = #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        posttime = #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="visits != null" >
+        visits = #{visits,jdbcType=INTEGER},
+      </if>
+      <if test="noteint != null" >
+        noteint = #{noteint,jdbcType=INTEGER},
+      </if>
+      <if test="notestring != null" >
+        notestring = #{notestring,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where topid = #{topid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.moas.crawler.model.TopNews" >
+    update top_news
+    set md5 = #{md5,jdbcType=VARCHAR},
+      sortindex = #{sortindex,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      toprank = #{toprank,jdbcType=INTEGER},
+      linkurl = #{linkurl,jdbcType=VARCHAR},
+      imageurl = #{imageurl,jdbcType=VARCHAR},
+      sourceid = #{sourceid,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      posttime = #{posttime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      visits = #{visits,jdbcType=INTEGER},
+      noteint = #{noteint,jdbcType=INTEGER},
+      notestring = #{notestring,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where topid = #{topid,jdbcType=BIGINT}
+  </update>
+</mapper>
