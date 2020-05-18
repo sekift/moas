@@ -1,9 +1,9 @@
 {
-    "name" : "新闻资讯",
-    "appid" : "",
-    "description" : "基于uni-app开发的新闻/资讯类App模板",
-    "versionName" : "2.4.3",
-    "versionCode" : 112,
+    "name" : "光速吃瓜",
+    "appid" : "__UNI__0D05875",
+    "description" : "光速吃瓜信息集合",
+    "versionName" : "0.0.1",
+    "versionCode" : 1,
     "transformPx" : false,
     "uniStatistics" : {
         "enable" : true
@@ -37,7 +37,8 @@
             },
             /* ios打包配置 */
             "sdkConfigs" : {}
-        }
+        },
+        "compilerVersion" : 2
     },
     "quickapp" : {},
     "mp-weixin" : {
@@ -58,13 +59,20 @@
     },
     "h5" : {
         "router" : {
-            "base" : ""
+            "base" : "/h5/",
+            "mode" : "hash"
         },
-        "template" : "h5.template.html",
+        "template" : "index.html",
         "optimization" : {
             "treeShaking" : {
                 "enable" : true
             }
-        }
+        },
+        "devServer" : {
+            "https" : false,
+            "port" : 8086
+        },
+        "title" : "光速吃瓜",
+        "domain" : "moas.bubbt.com"
     }
 }

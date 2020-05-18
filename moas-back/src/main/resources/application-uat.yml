@@ -55,7 +55,7 @@ pagehelper:
     params: count=countSql
 
 server:
-  port: 8085
+  port: 8086
   servlet:
     context-path: /back-api
 

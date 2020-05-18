@@ -103,9 +103,9 @@
 
 				var startTime = new Date();
 				uni.request({
-					// url: this.$host + 'api/news',
+					// url: this.$host + 'api/news', 120.78.214.73
 					method: 'POST',
-					url: 'http://localhost:8085/back-api/api/topnews/search',
+					url: 'http://120.78.214.73:8086/back-api/api/topnews/search',
 					data: this.requestParams,
 					success: (result) => {
 						console.log("requestParams page="+this.requestParams.page);
