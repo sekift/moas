@@ -33,7 +33,7 @@
         <lombok.version>1.16.20</lombok.version>
         <zxing.version>3.3.3</zxing.version>
         <beanutils.version>1.8.3</beanutils.version>
-        <collections.version>3.2.1</collections.version>
+        <collections.version>3.2.2</collections.version>
         <htmlunit.version>2.27</htmlunit.version>
         <guava.version>28.0-jre</guava.version>
         <jdom.version>2.0.2</jdom.version>
