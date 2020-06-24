@@ -65,11 +65,11 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = baiduHopParser.parser(topNewsUrl, element);
         }else if("36氪快讯".equals(topNewsUrl.getNewsname())){
             list = kr36Parser.parser(topNewsUrl, element);
-        }else if("TechWeb滚动资讯".equals(topNewsUrl.getNewsname())){
+        }else if("TechWeb资讯".equals(topNewsUrl.getNewsname())){
             list = techWebParser.parser(topNewsUrl, element);
         }else if("艾媒行业观察".equals(topNewsUrl.getNewsname())){
             list = iiMediaParser.parser(topNewsUrl, element);
-        }else if("51cto热点".equals(topNewsUrl.getNewsname())){
+        }else if("51CTO热点".equals(topNewsUrl.getNewsname())){
             list = cto51Parser.parser(topNewsUrl, element);
         }else if("亿欧快讯".equals(topNewsUrl.getNewsname())){
             list = iyiouParser.parser(topNewsUrl, element);
@@ -90,7 +90,7 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = qihu360Parser.parser(topNewsUrl, pageSource);
         }else if("微信爆文".equals(topNewsUrl.getNewsname())){
             list = wxbParser.parser(topNewsUrl, pageSource);
-        }else if("csdn推荐".equals(topNewsUrl.getNewsname())){
+        }else if("CSDN推荐".equals(topNewsUrl.getNewsname())){
             list = csdnParser.parser(topNewsUrl, pageSource);
         }else if("云栖资讯".equals(topNewsUrl.getNewsname())){
             list = yqhParser.parser(topNewsUrl, pageSource);

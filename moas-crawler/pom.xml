@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.moas</groupId>
     <artifactId>moas-crawler</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>moas-crawler</name>
     <description>Moas SpringBoot Project</description>
@@ -32,9 +32,9 @@
         <fastjson.version>1.2.58</fastjson.version>
         <lombok.version>1.16.20</lombok.version>
         <zxing.version>3.3.3</zxing.version>
-        <beanutils.version>1.8.3</beanutils.version>
-        <collections.version>3.2.1</collections.version>
-        <htmlunit.version>2.27</htmlunit.version>
+        <beanutils.version>1.9.2</beanutils.version>
+        <collections.version>3.2.2</collections.version>
+        <htmlunit.version>2.37.0</htmlunit.version>
         <guava.version>28.0-jre</guava.version>
         <jdom.version>2.0.2</jdom.version>
         <!--<maven.war.plugin.version>2.6</maven.war.plugin.version>-->

@@ -31,7 +31,7 @@ public class TechWebParser {
         System.out.println(topNewsUrl.getNewsname()+"，"
                 + LocalDateTime.now() + "，线程名称：" + Thread.currentThread().getName()
                 + " 线程id：" + Thread.currentThread().getId()+"，topNewsUrl="+topNewsUrl);
-        //System.out.println("topNewsUrl="+topNewsUrl);
+        System.out.println("topNewsUrl="+topNewsUrl);
 
         Elements elements = element.getElementsByClass("tit");
         TopNews topNews = null;
