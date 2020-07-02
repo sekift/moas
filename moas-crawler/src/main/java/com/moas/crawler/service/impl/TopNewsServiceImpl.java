@@ -4,6 +4,7 @@ import com.moas.crawler.dao.TopNewsMapper;
 import com.moas.crawler.model.TopNews;
 import com.moas.crawler.model.TopNewsExample;
 import com.moas.crawler.service.TopNewsService;
+import com.moas.crawler.syn.NlpSyn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class TopNewsServiceImpl implements TopNewsService {
 
     @Autowired
     private TopNewsMapper topNewsMapper;
+
+    @Autowired
+    private NlpSyn nlpSyn;
 
     private String[] filterDomain = {"www.thepaper.cn","www.ithome.com"};
 
@@ -52,7 +56,12 @@ public class TopNewsServiceImpl implements TopNewsService {
                     if(topNews.getImageurl() == null){
                         topNews.setImageurl("");
                     }
-                    topNewsMapper.insert(topNews);
+                    int result = topNewsMapper.insert(topNews);
+                    if(result > 0){
+                        // 分词入库
+                        nlpSyn.setSynQueue(topNews);
+                    }
+
                 }else{
                     topNews.setTopid(topNews1.getTopid());
 

@@ -127,7 +127,7 @@
 	/* #endif */
 
 	.banner {
-		height: 250upx;
+		height: 200upx;
 		position: relative;
 		background-color: #ccc;
 		flex-direction: row;
