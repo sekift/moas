@@ -1,8 +1,0 @@
-com\moas\crawler\model\TopWordsExample$GeneratedCriteria.class
-com\moas\crawler\model\TopWordsExample.class
-com\moas\crawler\dao\TopWordsMapper.class
-com\moas\crawler\model\TopWordsExample$Criteria.class
-com\moas\crawler\model\TopWords.class
-com\moas\crawler\service\impl\TopWordsServiceImpl.class
-com\moas\crawler\service\TopWordsService.class
-com\moas\crawler\model\TopWordsExample$Criterion.class

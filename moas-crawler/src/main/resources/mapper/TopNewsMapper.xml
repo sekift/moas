@@ -79,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    topid, md5, sortindex, content, toprank, linkurl, imageurl, sourceid, source, posttime,
+    topid, md5, sortindex, content, toprank, linkurl, imageurl, sourceid, source, posttime, 
     createtime, updatetime, status, visits, noteint, notestring, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.moas.crawler.model.TopNewsExample" >
@@ -98,7 +98,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select
+    select 
     <include refid="Base_Column_List" />
     from top_news
     where topid = #{topid,jdbcType=BIGINT}
@@ -114,17 +114,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.moas.crawler.model.TopNews" >
-    insert into top_news (topid, md5, sortindex,
-      content, toprank, linkurl,
-      imageurl, sourceid, source,
-      posttime, createtime, updatetime,
-      status, visits, noteint,
+    insert into top_news (topid, md5, sortindex, 
+      content, toprank, linkurl, 
+      imageurl, sourceid, source, 
+      posttime, createtime, updatetime, 
+      status, visits, noteint, 
       notestring, remark)
-    values (#{topid,jdbcType=BIGINT}, #{md5,jdbcType=VARCHAR}, #{sortindex,jdbcType=INTEGER},
-      #{content,jdbcType=VARCHAR}, #{toprank,jdbcType=INTEGER}, #{linkurl,jdbcType=VARCHAR},
-      #{imageurl,jdbcType=VARCHAR}, #{sourceid,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR},
-      #{posttime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP},
-      #{status,jdbcType=TINYINT}, #{visits,jdbcType=INTEGER}, #{noteint,jdbcType=INTEGER},
+    values (#{topid,jdbcType=BIGINT}, #{md5,jdbcType=VARCHAR}, #{sortindex,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{toprank,jdbcType=INTEGER}, #{linkurl,jdbcType=VARCHAR}, 
+      #{imageurl,jdbcType=VARCHAR}, #{sourceid,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, 
+      #{posttime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{visits,jdbcType=INTEGER}, #{noteint,jdbcType=INTEGER}, 
       #{notestring,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.moas.crawler.model.TopNews" >
@@ -304,22 +304,22 @@
   <update id="updateByExample" parameterType="map" >
     update top_news
     set topid = #{record.topid,jdbcType=BIGINT},
-    md5 = #{record.md5,jdbcType=VARCHAR},
-    sortindex = #{record.sortindex,jdbcType=INTEGER},
-    content = #{record.content,jdbcType=VARCHAR},
-    toprank = #{record.toprank,jdbcType=INTEGER},
-    linkurl = #{record.linkurl,jdbcType=VARCHAR},
-    imageurl = #{record.imageurl,jdbcType=VARCHAR},
-    sourceid = #{record.sourceid,jdbcType=INTEGER},
-    source = #{record.source,jdbcType=VARCHAR},
-    posttime = #{record.posttime,jdbcType=TIMESTAMP},
-    createtime = #{record.createtime,jdbcType=TIMESTAMP},
-    updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
-    status = #{record.status,jdbcType=TINYINT},
-    visits = #{record.visits,jdbcType=INTEGER},
-    noteint = #{record.noteint,jdbcType=INTEGER},
-    notestring = #{record.notestring,jdbcType=VARCHAR},
-    remark = #{record.remark,jdbcType=VARCHAR}
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      sortindex = #{record.sortindex,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      toprank = #{record.toprank,jdbcType=INTEGER},
+      linkurl = #{record.linkurl,jdbcType=VARCHAR},
+      imageurl = #{record.imageurl,jdbcType=VARCHAR},
+      sourceid = #{record.sourceid,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      posttime = #{record.posttime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT},
+      visits = #{record.visits,jdbcType=INTEGER},
+      noteint = #{record.noteint,jdbcType=INTEGER},
+      notestring = #{record.notestring,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <classPathEntry location="C:/Users/My/.m2/repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar" />
+    <classPathEntry location="C:/Users/pc/.m2/repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar" />
     <context id="SqlTables" targetRuntime="MyBatis3">
 
         <!-- 注释 -->
@@ -44,19 +44,15 @@
 
         <!-- 要生成的表名 -->
         <!-- 保存新闻热点表 -->
-        <!--<table tableName="top_news"
+        <table tableName="top_news"
                domainObjectName="TopNews" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+               enableSelectByExample="true" selectByExampleQueryId="true"></table>
         <!-- 新闻热点链接表 -->
         <!--<table tableName="top_news_url"
                domainObjectName="TopNewsUrl" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
-        <!-- 保存热点词语的表 -->
-        <!--<table tableName="top_words"
-               domainObjectName="TopWords" enableCountByExample="true"
-               enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+
     </context>
 </generatorConfiguration>
