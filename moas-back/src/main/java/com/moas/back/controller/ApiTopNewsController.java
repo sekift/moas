@@ -22,7 +22,7 @@ public class ApiTopNewsController {
      * @return
      */
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    @ApiOperation(value="查询条件热点信息", notes="热点信息接口，支持topid、content、sourceid或cource" ,httpMethod="POST")
+    @ApiOperation(value="查询条件热点信息", notes="热点信息接口，支持topid、content、sourceid、cource或createtime" ,httpMethod="POST")
     public JsonRslt search(@RequestBody TopNewsVO topNewsVO) {
         return topNewsService.search(topNewsVO);
     }
@@ -33,7 +33,7 @@ public class ApiTopNewsController {
      * @return
      */
     @RequestMapping(value = "/select", method = RequestMethod.POST)
-    @ApiOperation(value="查询单条热点信息", notes="热点信息接口，只传albumid即可" ,httpMethod="POST")
+    @ApiOperation(value="查询单条热点信息", notes="热点信息接口，只传topid即可" ,httpMethod="POST")
     public JsonRslt select(@RequestBody TopNewsVO topNewsVO) {
         return topNewsService.select(topNewsVO.getTopid());
     }
@@ -67,7 +67,7 @@ public class ApiTopNewsController {
      * @return
      */
     @RequestMapping(value = "/del", method = RequestMethod.POST)
-    @ApiOperation(value="热点信息删除", notes="热点信息接口，只传albumid即可" ,httpMethod="POST")
+    @ApiOperation(value="热点信息删除", notes="热点信息接口，只传topid即可" ,httpMethod="POST")
     public JsonRslt del(@RequestBody TopNewsVO topNewsVO) {
         return topNewsService.del(topNewsVO.getTopid());
     }

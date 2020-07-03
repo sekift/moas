@@ -22,8 +22,9 @@ JDK：1.8.0_121<br/>
 项目配置请看/doc/moas-crawler配置文档.doc，sql数据表信息请看back.sql。
 
 ## 功能更新
-2020/07/03 更新<br />
+2020/07/04 更新<br />
 1、增加moas-crawler分词功能，热点跟踪。<br />
+2、增加moas-back热点词语功能，热点搜索功能。<br />
 
 2020/05/19 更新<br />
 1、完善moas-crawler、moas-back项目。<br />
@@ -41,5 +42,6 @@ JDK：1.8.0_121<br/>
 3、再修改parser/impl下的TopNewsParserImpl；<br />
 4、调整入库即可。<br />
 
-## 问题
-1、moas-front打包后有一js文件300k+，加载启动缓慢，至少5秒左右。
+## 注意点
+1、moas-front打包后有一js文件300k+，加载启动缓慢，至少5秒左右。<br />
+2、分词是使用FoolNLTK包，地址为：https://github.com/rockyzhengwu/FoolNLTK 。注意在centos上线时，如过报错，一般时因为glib版本过低所至，按要求升级。一般libc.so.6升级到20即可。<br />

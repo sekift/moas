@@ -417,6 +417,9 @@
       <if test="source!=null and source!=''">
         AND source = #{source,jdbcType=VARCHAR}
       </if>
+      <if test="createtime!=null">
+        AND createtime>=DATE_SUB(now(),INTERVAL 15 DAY)
+      </if>
         AND status = 1
     </where>
     ORDER BY createtime DESC

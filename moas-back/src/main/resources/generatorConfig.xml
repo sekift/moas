@@ -48,6 +48,10 @@
                domainObjectName="TopNews" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
-
+        <!-- 词语表 -->
+        <!-- <table tableName="top_words"
+               domainObjectName="TopWords" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
     </context>
 </generatorConfiguration>
