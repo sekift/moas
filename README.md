@@ -22,6 +22,9 @@ JDK：1.8.0_121<br/>
 项目配置请看/doc/moas-crawler配置文档.doc，sql数据表信息请看back.sql。
 
 ## 功能更新
+2020/07/03 更新<br />
+1、增加moas-crawler分词功能，热点跟踪。<br />
+
 2020/05/19 更新<br />
 1、完善moas-crawler、moas-back项目。<br />
 2、完善moas-front项目，打包并运行h5。<br />
