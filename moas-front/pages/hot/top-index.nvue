@@ -1,5 +1,6 @@
 <template>
 	<view class="tabs">
+		<text class="list-text" styple="color:red">【{{que}}】</text>
 		<scroll-view ref="tabbar1" id="tab-bar" class="tab-bar" :scroll="false" :scroll-x="true" :show-scrollbar="false"
 		 :scroll-into-view="scrollInto">
 			<view style="flex-direction: column;">
@@ -26,7 +27,6 @@
 				<!-- #endif -->
 			</swiper-item>
 		</swiper>
-		<text class="article-meta-text article-author">{{que}}</text>
 	</view>
 </template>
 
@@ -35,26 +35,41 @@
 	const dom = weex.requireModule('dom');
 	// #endif
 
-	import newsPage from './top-page.nvue';
-
 	// 缓存每页最多
 	const MAX_CACHE_DATA = 100;
 	// 缓存页签数量
 	const MAX_CACHE_PAGE = 3;
 	const TAB_PRELOAD_OFFSET = 1;
 		
+		
+	import newsPage from './top-page.nvue';
+		
 	export default {
 		components: {
 			newsPage
 		},
+		onLoad: function (options) { //options为object类型，会序列化上个页面传递的参数
+		    this.que = options.query;
+			uni.setStorage({
+				key: "search_key",
+				data: this.que,
+				success: (res) => {
+					console.log("que setStorage成功");
+				},
+				fail: () => {
+					console.log("que setStorage失败");
+				}
+			})
+		},
 		data() {
 			return {
-				que: 'mr',
-				tabList: [{
+				tabList: [
+				{
 					id: "tab01",
 					name: '热点详情集合',
 					newsid: 0
-				}],
+				},
+				],
 				tabIndex: 0,
 				cacheTab: [],
 				scrollInto: "",
@@ -63,10 +78,6 @@
 				indicatorLineWidth: 0,
 				isTap: false
 			}
-		},
-		onLoad: function (options) { //options为object类型，会序列化上个页面传递的参数
-		    this.que = options.query;
-		    console.log(this.que); //打印出上个页面传递的参数。
 		},
 		onReady() {
 			this._lastTabIndex = 0;
@@ -88,6 +99,7 @@
 
 			this.getTabbarItemsSize();
 		},
+
 		methods: {
 			ontabtap(e) {
 				let index = e.target.dataset.current || e.currentTarget.dataset.current;
@@ -245,6 +257,7 @@
 				this.pageList[index].clear();
 			}
 		}
+		
 	}
 	
 	var _hmt = _hmt || [];

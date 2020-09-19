@@ -63,13 +63,8 @@
 				default: ''
 			}
 		},
-		onLoad: function (options) { //options为object类型，会序列化上个页面传递的参数
-		    this.que = options.query;
-		    console.log(this.que); //打印出上个页面传递的参数。
-		},
 		data() {
 			return {
-				que: this.que,
 				dataList: [],
 				navigateFlag: false,
 				pulling: false,
@@ -89,17 +84,15 @@
 				refreshIcon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5QTFRFcHBw3Nzct7e39vb2ycnJioqK7e3tpqam29vb////D8oK7wAAAAp0Uk5T////////////ALLMLM8AAABxSURBVHja7JVBDoAgDASrjqj//7CJBi90iyYeOHTPMwmFZrHjYyyFYYUy1bwUZqtJIYVxhf1a6u0R7iUvWsCcrEtwJHp8MwMdvh2amHduiZD3rpWId9+BgPd7Cc2LIkPyqvlQvKxKBJ//Qwq/CacAAwDUv0a0YuKhzgAAAABJRU5ErkJggg=="
 			}
 		},
+		
 		created() {
 			this.pullTimer = null;
 			this.requestParams = {
-				//sourceid: this.nid,
-				content: this.que,
 				page: 1,
 				raws: 30,
 			};
 		},
 		methods: {
-			
 			loadData(refresh) {
 				if (this.isLoading) {
 					return;
@@ -108,7 +101,18 @@
 				this.isLoading = true;
 				this.isNoData = false;
 				this.requestParams.time = new Date().getTime() + '';
-
+								
+				uni.getStorage({
+					key: "search_key",
+					success: (res) => {
+						this.requestParams.content = res.data;
+						console.log("que getStorage成功= "+ res.data);
+					},
+					fail: () => {
+						console.log("que getStorage失败");
+					}
+				})
+				
 				var startTime = new Date();
 				uni.request({
 					// url: this.$host + 'api/news', 120.78.214.73
@@ -116,7 +120,6 @@
 					url: 'http://120.78.214.73:8086/back-api/api/topnews/search',
 					data: this.requestParams,
 					success: (result) => {
-						console.log("requestParams content="+this.requestParams.content);
 						var endTime = new Date();
 						console.log("request time " + new Date(endTime - startTime).getTime());
 						//判断还有没有后面的页数
