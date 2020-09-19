@@ -279,16 +279,18 @@
 
   <select id="topWordsSearch" parameterType="com.moas.back.model.TopWords" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List" />
+    wordid, topid, word, wordtype, max(createtime) createtime, updatetime, status, visits, count(word) count
     FROM
     top_words
     <where>
-      createtime>=DATE_SUB(now(),INTERVAL 7 DAY)
-      AND wordtype != 'n'
+      <if test="visits!=null and visits>0">
+        createtime>=DATE_SUB(now(),INTERVAL #{visits,jdbcType=INTEGER} DAY)
+      </if>
+      /*AND wordtype != 'n'*/
       AND status = 1
     </where>
     GROUP BY word
-    ORDER BY count DESC
-    LIMIT 30
+    ORDER BY count DESC/*,createtime DESC*/
+    LIMIT 100
   </select>
 </mapper>

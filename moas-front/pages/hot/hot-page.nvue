@@ -45,7 +45,7 @@
 	import uniRefresh from '@/components/uni-refresh.vue';
 	import uniLoadMore from '@/components/uni-load-more.vue';
 	import noData from '@/components/nodata.nvue';
-	import newsItem from './news-item.nvue';
+	import newsItem from './hot-item.nvue';
 
 	export default {
 		components: {
@@ -83,16 +83,10 @@
 				refreshIcon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5QTFRFcHBw3Nzct7e39vb2ycnJioqK7e3tpqam29vb////D8oK7wAAAAp0Uk5T////////////ALLMLM8AAABxSURBVHja7JVBDoAgDASrjqj//7CJBi90iyYeOHTPMwmFZrHjYyyFYYUy1bwUZqtJIYVxhf1a6u0R7iUvWsCcrEtwJHp8MwMdvh2amHduiZD3rpWId9+BgPd7Cc2LIkPyqvlQvKxKBJ//Qwq/CacAAwDUv0a0YuKhzgAAAABJRU5ErkJggg=="
 			}
 		},
-		onLoad: function (options) { //options为object类型，会序列化上个页面传递的参数
-		    this.que = options.query;
-		    console.log(this.que); //打印出上个页面传递的参数。
-		},
 		created() {
 			this.pullTimer = null;
 			this.requestParams = {
-				sourceid: this.nid,
-				page: 1,
-				raws: 30,
+				visits: this.nid,
 			};
 		},
 		methods: {
@@ -109,7 +103,8 @@
 				uni.request({
 					// url: this.$host + 'api/news', 120.78.214.73
 					method: 'POST',
-					url: 'http://120.78.214.73:8086/back-api/api/topnews/search',
+					url: 'http://120.78.214.73:8086/back-api/api/topwords/topWordsSearch',
+					//url:'http://120.78.214.73:8086/back-api/api/topnews/search',
 					data: this.requestParams,
 					success: (result) => {
 						console.log("requestParams page="+this.requestParams.page);
@@ -127,18 +122,14 @@
 
 						const data_list = data.map((news) => {
 							return {
-								id: this.newGuid() + news.topid, 
-								newsid: news.sourceid,
+								id: this.newGuid() + news.wordid, 
+								newsid: news.topid,
 								article_type: 1,
 								datetime: friendlyDate(new Date(news.createtime.replace(/\-/g,
 									'/')).getTime()),
-								title: news.content,
-								image_url: news.imageurl,
-								source: news.source,
-								comment_count: news.toprank,
-								post_id: news.sortindex,
-								linkurl: news.linkurl,
-								hottype: news.notestring
+								title: news.word,
+								source: news.wordtype,
+								comment_count: news.count
 							};
 						});
 
@@ -185,7 +176,8 @@
 				}
 				this.navigateFlag = true;
 				uni.navigateTo({
-					url: '/pages/detail/detail?query=' + encodeURIComponent(JSON.stringify(detail))
+					url: '/pages/hot/top-index?query=' + detail.title,
+					//url: '/pages/hot/top-page?query=' + encodeURIComponent(JSON.stringify(detail)),
 				});
 				setTimeout(() => {
 					this.navigateFlag = false;

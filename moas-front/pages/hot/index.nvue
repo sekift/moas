@@ -34,7 +34,7 @@
 	const dom = weex.requireModule('dom');
 	// #endif
 
-	import newsPage from './news-page.nvue';
+	import newsPage from './hot-page.nvue';
 
 	// 缓存每页最多
 	const MAX_CACHE_DATA = 100;
@@ -48,27 +48,26 @@
 		},
 		data() {
 			return {
-				tabList: [{
-					id: "tab01",
-					name: '最新',
-					newsid: 0
-				}, {
-					id: "tab02",
-					name: '吃瓜',
-					newsid: 1
-				}, {
-					id: "tab03",
-					name: '资讯',
-					newsid: 2
-				}, {
-					id: "tab04",
-					name: 'IT',
-					newsid: 3
-				}, {
-					id: "tab05",
-					name: '其他',
-					newsid: 4
-				}],
+				tabList: [
+					{
+						id: "tab01",
+						name: '日热点',
+						newsid: 1
+					}, {
+						id: "tab02",
+						name: '周热点',
+						newsid: 7
+					}, {
+						id: "tab03",
+						name: '月热点',
+						newsid: 31
+					}, {
+						id: "tab04",
+						name: '年热点',
+						newsid: 365
+					}
+					
+				],
 				tabIndex: 0,
 				cacheTab: [],
 				scrollInto: "",

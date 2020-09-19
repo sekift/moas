@@ -78,7 +78,7 @@ public class ApiTopWordsController {
      */
     @RequestMapping(value = "/topWordsSearch", method = RequestMethod.POST)
     @ApiOperation(value="查询热点词语信息", notes="词语信息接口" ,httpMethod="POST")
-    public JsonRslt topWordsSearch() {
-        return topWordsService.topWordsSearch();
+    public JsonRslt topWordsSearch(@RequestBody TopWordsVO topWordsVO) {
+        return topWordsService.topWordsSearch(topWordsVO);
     }
 }

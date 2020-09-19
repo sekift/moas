@@ -31,10 +31,18 @@
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
+		<!--<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe614;</text>
+				<navigator class= "list-text" url="/components/web-view/web-view?website=https://github.com">关于应用</navigator>
+				<text class="list-text">关于应用</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>-->
 		<view class="center-list">
 			<view class="center-list-item">
 				<text class="list-icon">&#xe614;</text>
-				<text class="list-text">关于应用</text>
+				<text class="list-text">项目地址：github.com/sekift/moas</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
@@ -42,6 +50,7 @@
 </template>
 
 <script>
+	   
 	export default {
 		data() {
 			return {
@@ -55,9 +64,20 @@
 				if (!this.login) {
 					console.log('点击前往登录');
 				}
+			},
+			openURL() {
+			    window.open(this.href)
 			}
 		}
 	}
+	
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?6015536b970ef148edc32e4ab81fdc34";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
 </script>
 
 <style>

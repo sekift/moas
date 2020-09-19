@@ -91,10 +91,13 @@ public class TopWordsServiceImpl implements TopWordsService {
     }
 
     @Override
-    public JsonRslt topWordsSearch() {
+    public JsonRslt topWordsSearch(TopWordsVO topWordsVO) {
         try{
-            List<TopWords> rstList = topWordsMapper.topWordsSearch();
-            return JsonRslt.putSuccess(rstList);
+            //PageHelper.startPage(1,100);
+            TopWords topWords=new TopWords();
+            CommUtils.copyProperties(topWords,topWordsVO);
+            List<TopWords> rstList = topWordsMapper.topWordsSearch(topWords);
+            return JsonRslt.putSuccess(new PageInfo(rstList));
         }catch (Exception e){
             LogUtils.logError(CommUtils.getException(e));
         }

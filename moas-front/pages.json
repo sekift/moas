@@ -4,6 +4,14 @@
 			"style": {}
 		},
 		{
+			"path": "pages/hot/index",
+			"style": {}
+		},
+		{
+			"path": "pages/hot/top-index",
+			"style": {}
+		},
+		{
 			"path": "pages/detail/detail",
 			"style": {
 				"app-plus": {
@@ -17,7 +25,11 @@
 			"path": "pages/ucenter/ucenter",
 			"style": {}
 		}
-	],
+        ,{
+            "path" : "components/web-view/web-view",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "光速吃瓜",
@@ -35,6 +47,12 @@
 				"iconPath": "static/index-0.png",
 				"selectedIconPath": "static/index-1.png",
 				"text": "吃瓜"
+			},
+			{
+				"pagePath": "pages/hot/index",
+				"iconPath": "static/hot-0.png",
+				"selectedIconPath": "static/hot-1.png",
+				"text": "热点"
 			},
 			{
 				"pagePath": "pages/ucenter/ucenter",

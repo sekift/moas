@@ -44,6 +44,6 @@ public interface TopWordsService {
      * 分词信息热点查询
      * @return
      */
-    JsonRslt topWordsSearch();
+    JsonRslt topWordsSearch(TopWordsVO topWordsVO);
 
 }

@@ -1,0 +1,32 @@
+    <template>
+    	<web-view :src="url" @message="handleMessage"></web-view>
+    </template>
+     
+    <script>
+    export default {
+    	data() {
+    		return {
+    			url: this.url  //要打开的外部链接
+    		};
+    	},
+		onLoad(options) {
+			if (options && options.website) {
+				this.url = options.website;
+			}
+		},
+    	methods: {
+    		//通过 @message 事件接收外部链接传过来的内容
+    		handleMessage(event) {
+    			if (event.detail.data[0].isClose) {
+    				uni.reLaunch({
+    					url: '/main/main'
+    				});
+    			}
+    		}
+    	}
+    };
+    </script>
+
+<style>
+
+</style>

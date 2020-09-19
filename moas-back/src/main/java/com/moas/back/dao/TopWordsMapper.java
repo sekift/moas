@@ -39,5 +39,5 @@ public interface TopWordsMapper {
      * 热点词语查询
      * @return
      */
-    List<TopWords> topWordsSearch();
+    List<TopWords> topWordsSearch(TopWords record);
 }
