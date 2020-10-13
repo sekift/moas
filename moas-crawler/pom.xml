@@ -48,7 +48,7 @@
         <jsoup.version>1.11.3</jsoup.version>
         <selenium-java.version>3.14.0</selenium-java.version>
         <phantomjs.version>1.4.4</phantomjs.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <nltk.version>1.0</nltk.version>
     </properties>
 
