@@ -12,12 +12,14 @@ import java.util.List;
 public class LSTMLexicalParserDemo {
 
     public static void main(String[] args){
-        String text = "俞渝正式回应李国庆“抢公章”：除了吃瓜 大家不必理会";
+        String text = "因一句感谢而哽咽的田书记累瘦了15斤";
         LexicalAnalyzer lexicalAnalyzer = FoolNLTK.getLSTMLexicalAnalyzer();
         // 分词
         List<List<Word>> words = lexicalAnalyzer.cut(text);
         for(List<Word> ws: words){
-            ws.forEach(System.out::println);
+            for(Word word:ws){
+                System.out.print(word+" ");
+            }
         }
 
         // 词性标注

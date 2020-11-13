@@ -117,7 +117,7 @@
 				uni.request({
 					// url: this.$host + 'api/news', 120.78.214.73
 					method: 'POST',
-					url: 'http://120.78.214.73:8086/back-api/api/topnews/search',
+					url: 'http://8.129.57.86:8086/back-api/api/topnews/search',
 					data: this.requestParams,
 					success: (result) => {
 						var endTime = new Date();
