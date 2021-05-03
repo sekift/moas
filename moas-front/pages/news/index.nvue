@@ -66,8 +66,12 @@
 					newsid: 3
 				}, {
 					id: "tab05",
-					name: '其他',
+					name: '虚拟币',
 					newsid: 4
+				}, {
+					id: "tab06",
+					name: '其他',
+					newsid: 5
 				}],
 				tabIndex: 0,
 				cacheTab: [],

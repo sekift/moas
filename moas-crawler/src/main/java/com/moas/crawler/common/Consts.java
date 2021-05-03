@@ -32,4 +32,8 @@ public class Consts {
 
     public static final String SEGMENT_DOMAIN = "https://segmentfault.com";
     public static final String JIANSHU_DOMAIN = "https://www.jianshu.com";
+
+    public static final String BITCOIN_DOMAIN = "https://www.bitcoin86.com";
+    public static final String BISHIJIE_DOMAIN = "https://www.bishijie.com";
+
 }

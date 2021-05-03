@@ -55,6 +55,12 @@ public class TopNewsParserImpl implements TopNewsParser {
     @Autowired
     JianshuParser jianshuParser;
 
+    @Autowired
+    BitcoinParser bitcoinParser;
+
+    @Autowired
+    BishijieParser bishijieParser;
+
     List<TopNews> list = null;
 
     @Override
@@ -77,6 +83,10 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = segmentParser.parser(topNewsUrl, element);
         }else if("简书程序员".equals(topNewsUrl.getNewsname())){
             list = jianshuParser.parser(topNewsUrl, element);
+        }else if("虚拟币快讯".equals(topNewsUrl.getNewsname())){
+            list = bitcoinParser.parser(topNewsUrl, element);
+        }else if("币资讯".equals(topNewsUrl.getNewsname())){
+            list = bishijieParser.parser(topNewsUrl, element);
         }
         if(list != null && !list.isEmpty()) {
             topNewsService.insert(list);
