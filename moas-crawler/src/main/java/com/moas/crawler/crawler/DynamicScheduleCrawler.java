@@ -2,6 +2,7 @@ package com.moas.crawler.crawler;
 
 import com.moas.crawler.model.TopNewsUrl;
 import com.moas.crawler.parser.TopNewsParser;
+import com.moas.crawler.util.JsonUtil;
 import com.xuxueli.crawler.XxlCrawler;
 import com.xuxueli.crawler.annotation.PageSelect;
 import com.xuxueli.crawler.parser.PageParser;
@@ -32,12 +33,6 @@ public class DynamicScheduleCrawler {
     }
 
     public void run(TopNewsUrl topNewsUrl){
-        if("虚拟币快讯".equals(topNewsUrl.getNewsname())){
-            header.put("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 " +
-                    "(KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36");
-            header.put("sec-ch-ua", "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"");
-        }
-
         XxlCrawler crawler = new XxlCrawler.Builder()
                 .setUrls(topNewsUrl.getNewsurl())
                 //.setWhiteUrlRegexs("https://gitee\\.com/xuxueli0323/projects\\?page=\\d+")
@@ -60,6 +55,9 @@ public class DynamicScheduleCrawler {
     }
 
     public void runJson(TopNewsUrl topNewsUrl){
+        if(topNewsUrl.getHeader() !=null && topNewsUrl.getHeader()!=""){
+            header = JsonUtil.toBean(topNewsUrl.getHeader(), Map.class);
+        }
         header.put("Cookie", topNewsUrl.getCookie());
         XxlCrawler crawler = new XxlCrawler.Builder()
                 .setUrls(topNewsUrl.getNewsurl())

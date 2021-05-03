@@ -58,5 +58,6 @@
                domainObjectName="TopWords" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="top_coin"></table>-->
     </context>
 </generatorConfiguration>

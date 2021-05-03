@@ -1,13 +1,16 @@
 package com.moas.crawler.parser.impl;
 
+import com.moas.crawler.model.TopCoin;
 import com.moas.crawler.model.TopNews;
 import com.moas.crawler.parser.TopNewsParser;
 import com.moas.crawler.model.TopNewsUrl;
+import com.moas.crawler.service.TopCoinService;
 import com.moas.crawler.service.TopNewsService;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -15,6 +18,9 @@ public class TopNewsParserImpl implements TopNewsParser {
 
     @Autowired
     TopNewsService topNewsService;
+
+    @Autowired
+    TopCoinService topCoinService;
 
     @Autowired
     WeiboRealtimeHopParser weiboRealtimeHopParser;
@@ -61,7 +67,12 @@ public class TopNewsParserImpl implements TopNewsParser {
     @Autowired
     BishijieParser bishijieParser;
 
+    @Autowired
+    AexParser aexParser;
+
     List<TopNews> list = null;
+
+    List<TopCoin> coinList = null;
 
     @Override
     public List<TopNews> parser(TopNewsUrl topNewsUrl, Element element) {
@@ -104,6 +115,12 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = csdnParser.parser(topNewsUrl, pageSource);
         }else if("云栖资讯".equals(topNewsUrl.getNewsname())){
             list = yqhParser.parser(topNewsUrl, pageSource);
+        }else if("安银交易".equals(topNewsUrl.getNewsname())){
+            coinList = aexParser.parser(topNewsUrl, pageSource);
+            if(coinList != null && !coinList.isEmpty()) {
+                topCoinService.insert(coinList);
+            }
+            return new ArrayList<>();
         }
         if(list != null && !list.isEmpty()) {
             topNewsService.insert(list);
