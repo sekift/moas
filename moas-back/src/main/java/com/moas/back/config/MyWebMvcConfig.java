@@ -101,6 +101,8 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/api/topnews/**", corsConfig());
         source.registerCorsConfiguration("/api/topwords/**", corsConfig());
+        source.registerCorsConfiguration("/api/topcoin/**", corsConfig());
+
         return new CorsFilter(source);
     }
 

@@ -1,0 +1,176 @@
+<template>
+	<view class="tabs">
+		<scroll-view ref="tabbar1" id="tab-bar" class="tab-bar" :scroll="false" :scroll-x="true" :show-scrollbar="false"
+		 :scroll-into-view="scrollInto">
+			<view style="flex-direction: column;">
+				<view style="flex-direction: row;">
+					<view class="uni-tab-item">
+						<text class="uni-tab-item-title"></text>
+					</view>
+				</view>
+				<view class="scroll-view-indicator">
+					<view ref="underline" class="scroll-view-underline" :class="isTap ? 'scroll-view-animation':''" :style="{left: indicatorLineLeft + 'px', width: indicatorLineWidth + 'px'}"></view>
+				</view>
+			</view>
+		</scroll-view>
+		<view class="tab-bar-line"></view>
+	</view>
+</template>
+
+<script>
+	// #ifdef APP-PLUS
+	const dom = weex.requireModule('dom');
+	// #endif
+
+	import newsPage from './news-page.nvue';
+
+	// 缓存每页最多
+	const MAX_CACHE_DATA = 100;
+	// 缓存页签数量
+	const MAX_CACHE_PAGE = 3;
+	const TAB_PRELOAD_OFFSET = 1;
+
+	export default {
+		components: {
+			newsPage
+		},
+		data() {
+			return {
+				tabIndex: 0,
+				cacheTab: [],
+				scrollInto: "",
+				navigateFlag: false,
+				indicatorLineLeft: 0,
+				indicatorLineWidth: 0,
+				isTap: false
+			}
+		},
+		onReady() {
+			this._lastTabIndex = 0;
+			this.swiperWidth = 0;
+			this.tabbarWidth = 0;
+			this._touchTabIndex = 0;
+
+			// #ifndef MP-ALIPAY
+			this.pageList = this.$refs.page;
+			// #endif
+		},
+		methods: {
+		}
+	}
+	
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?6015536b970ef148edc32e4ab81fdc34";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+		
+<style>
+	/* #ifndef APP-PLUS */
+	page {
+		width: 100%;
+		min-height: 100%;
+		display: flex;
+	}
+
+	/* #endif */
+
+	.tabs {
+		flex: 1;
+		flex-direction: column;
+		overflow: hidden;
+		background-color: #ffffff;
+		/* #ifdef MP-ALIPAY || MP-BAIDU */
+		height: 100vh;
+		/* #endif */
+	}
+
+	.tab-bar {
+		width: 750upx;
+		height: 84upx;
+		flex-direction: row;
+		/* #ifndef APP-PLUS */
+		white-space: nowrap;
+		/* #endif */
+	}
+
+	/* #ifndef APP-NVUE */
+	.tab-bar ::-webkit-scrollbar {
+	    display: none;  
+	    width: 0 !important;  
+	    height: 0 !important;  
+	    -webkit-appearance: none;  
+	    background: transparent;  
+	}
+	/* #endif */
+
+	.scroll-view-indicator {
+		position: relative;
+		height: 2px;
+		background-color: transparent;
+	}
+
+	.scroll-view-underline {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 0;
+		background-color: #007AFF;
+	}
+
+	.scroll-view-animation {
+		transition-duration: 0.2s;
+		transition-property: left;
+	}
+
+	.tab-bar-line {
+		height: 1upx;
+		background-color: #cccccc;
+	}
+
+	.tab-box {
+		flex: 1;
+	}
+
+	.uni-tab-item {
+		/* #ifndef APP-PLUS */
+		display: inline-block;
+		/* #endif */
+		flex-wrap: nowrap;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.uni-tab-item-title {
+		color: #555;
+		font-size: 30upx;
+		height: 80upx;
+		line-height: 80upx;
+		flex-wrap: nowrap;
+		/* #ifndef APP-PLUS */
+		white-space: nowrap;
+		/* #endif */
+	}
+
+	.uni-tab-item-title-active {
+		color: #007AFF;
+	}
+
+	.swiper-item {
+		flex: 1;
+		flex-direction: column;
+	}
+
+	.page-item {
+		flex: 1;
+		flex-direction: row;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+</style>
