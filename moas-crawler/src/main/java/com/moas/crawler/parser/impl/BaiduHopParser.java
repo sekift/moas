@@ -19,61 +19,58 @@ import java.util.Date;
 import java.util.List;
 
 @Configuration
-public class BaiduHopParser{
+public class BaiduHopParser {
     private static Logger logger = LoggerFactory.getLogger(BaiduHopParser.class);
 
     @Autowired
     private SnowflakeIdWorker snowflakeIdWorker;
 
-    public List<TopNews> parser(TopNewsUrl topNewsUrl, Element element){
-        List<TopNews> list = new ArrayList<TopNews>();
-        System.out.println(topNewsUrl.getNewsname()+"，"
+    public List<TopNews> parser(TopNewsUrl topNewsUrl, Element element) {
+        List<TopNews> list = new ArrayList<>();
+        System.out.println(topNewsUrl.getNewsname() + "，"
                 + LocalDateTime.now() + "，线程名称：" + Thread.currentThread().getName()
-                + " 线程id：" + Thread.currentThread().getId()+"，topNewsUrl="+topNewsUrl);
-        //System.out.println("topNewsUrl="+topNewsUrl);
-        Elements elements = element.getElementsByTag("tr");
-        //System.out.println(elements);
+                + " 线程id：" + Thread.currentThread().getId() + "，topNewsUrl=" + topNewsUrl);
+        Elements elements = element.getElementsByClass("category-wrap_iQLoo horizontal_1eKyQ");
+        System.out.println(elements);
 
         TopNews topNews = null;
-        for(Element e : elements) {
-            String content =e.getElementsByClass("list-title").text();
-            if(StringUtil.isEmpty(content)){
+        for (Element e : elements) {
+            String content = e.getElementsByClass("c-single-text-ellipsis").text();
+            if (StringUtil.isEmpty(content)) {
                 continue;
             }
             topNews = new TopNews();
 
-            String sortindexStr = e.getElementsByClass("num-top").text();
-            if(StringUtil.isEmpty(sortindexStr)){
-                sortindexStr = e.getElementsByClass("num-normal").text();
-            }
-            if(StringUtil.isEmpty(sortindexStr)){
+            String sortindexStr = e.getElementsByClass("index_1Ew5p").text();
+            if (StringUtil.isEmpty(sortindexStr)) {
                 sortindexStr = "1";
             }
 
-            String toprankStr = e.getElementsByClass("icon-rise").text();
-            if(StringUtil.isEmpty(toprankStr)) {
-                toprankStr = e.getElementsByClass("icon-fall").text();
-            }
-            if(StringUtil.isEmpty(toprankStr)){
+            String toprankStr = e.getElementsByClass("hot-index_1Bl1a").text();
+            if (StringUtil.isEmpty(toprankStr)) {
                 toprankStr = Consts.TOPRANK_DEFAULT;
             }
 
-            String linkurl = e.getElementsByClass("list-title").select("a").attr("href");
+            String imageurl = e.getElementsByClass("img-wrapper_29V76")
+                    .select("img").attr("src");
+            String linkurl = e.getElementsByClass("category-wrap_iQLoo horizontal_1eKyQ")
+                    .select("a").attr("href");
 
-            topNews.setTopid(snowflakeIdWorker.nextId());//
-            topNews.setMd5(MD5Util.md5(content+topNewsUrl.getNewsid(), "utf-8"));
+            topNews.setTopid(snowflakeIdWorker.nextId());
+            topNews.setMd5(MD5Util.md5(content + topNewsUrl.getNewsid(), "utf-8"));
             topNews.setSourceid(topNewsUrl.getNewsid());
             topNews.setSource(topNewsUrl.getNewsname());
 
+            topNews.setImageurl(imageurl);
             topNews.setSortindex(Integer.valueOf(sortindexStr));
             topNews.setToprank(Integer.valueOf(toprankStr));
             topNews.setContent(content);
             topNews.setLinkurl(linkurl);
             topNews.setPosttime(new Date());
 
-            String notestring ="";
-            Elements iconNewSpan = e.getElementsByClass("keyword").select("span");
-            if(iconNewSpan != null && iconNewSpan.toString().contains("icon-new")){
+            String notestring = "";
+            Elements iconNewSpan = e.getElementsByClass("c-text c-text-hot_3ZhI9 hot-tag_1G080");
+            if (iconNewSpan != null) {
                 notestring = "热";
             }
             topNews.setNotestring(notestring);

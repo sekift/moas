@@ -45,7 +45,7 @@ public class AexParser {
         TopCoin topCoin = null;
         for(Map<String, Object> e : pageSourceData) {
 
-            if(!e.get("market").equals("cnc")){
+            if(!e.get("market").equals("usdt")){
                 continue;
             }
 

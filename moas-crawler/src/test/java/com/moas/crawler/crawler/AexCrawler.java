@@ -33,7 +33,7 @@ public class AexCrawler {
                         }
                         int index = 1;
                         for(Map<String, Object> e : pageSourceData) {
-                            if(!e.get("market").equals("cnc")){
+                            if(!e.get("market").equals("usdt")){
                                 continue;
                             }
 
