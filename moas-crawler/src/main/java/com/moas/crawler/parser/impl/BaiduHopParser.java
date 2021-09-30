@@ -31,7 +31,6 @@ public class BaiduHopParser {
                 + LocalDateTime.now() + "，线程名称：" + Thread.currentThread().getName()
                 + " 线程id：" + Thread.currentThread().getId() + "，topNewsUrl=" + topNewsUrl);
         Elements elements = element.getElementsByClass("category-wrap_iQLoo horizontal_1eKyQ");
-        System.out.println(elements);
 
         TopNews topNews = null;
         for (Element e : elements) {

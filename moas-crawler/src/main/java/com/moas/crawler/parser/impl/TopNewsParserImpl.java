@@ -70,6 +70,9 @@ public class TopNewsParserImpl implements TopNewsParser {
     @Autowired
     AexParser aexParser;
 
+    @Autowired
+    CbstParser cbstParser;
+
     List<TopNews> list = null;
 
     List<TopCoin> coinList = null;
@@ -98,6 +101,8 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = bitcoinParser.parser(topNewsUrl, element);
         }else if("币资讯".equals(topNewsUrl.getNewsname())){
             list = bishijieParser.parser(topNewsUrl, element);
+        }else if("饮料工业".equals(topNewsUrl.getNewsname())){
+            list = cbstParser.parser(topNewsUrl, element);
         }
         if(list != null && !list.isEmpty()) {
             topNewsService.insert(list);

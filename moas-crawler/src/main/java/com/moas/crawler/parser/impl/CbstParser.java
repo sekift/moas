@@ -17,13 +17,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @Configuration
-public class IyiouParser {
-    private static Logger logger = LoggerFactory.getLogger(IyiouParser.class);
-
-    private static final String URL = "https://www.iyiou.com";
+public class CbstParser {
+    private static Logger logger = LoggerFactory.getLogger(CbstParser.class);
+    private static final String URL = "http://www.cbst.com.cn";
 
     @Autowired
     private SnowflakeIdWorker snowflakeIdWorker;
@@ -33,43 +31,35 @@ public class IyiouParser {
         System.out.println(topNewsUrl.getNewsname() + "，"
                 + LocalDateTime.now() + "，线程名称：" + Thread.currentThread().getName()
                 + " 线程id：" + Thread.currentThread().getId() + "，topNewsUrl=" + topNewsUrl);
-        //System.out.println("topNewsUrl="+topNewsUrl);
-
-        Elements eles = element.getElementsByClass("eo-line-clamp-2");
-        Elements elements = eles.select("a");
+        Elements elements = element.getElementsByClass("ny-box").select("a");
+        System.out.println(elements);
 
         TopNews topNews = null;
-        int j = 1;
-        for (int i = 0; i < elements.size(); i++) {
-            if (i % 2 != 0) {
-                continue;
-            }
-            Element e = elements.get(i);
+        for (Element e : elements) {
             String content = e.text();
             String linkurl = e.attr("href");
-            if (StringUtil.isEmpty(content) || StringUtil.isEmpty(linkurl)) {
+            if (StringUtil.isEmpty(content) || content.startsWith("查看详情") || !linkurl.contains("details")) {
                 continue;
             }
             topNews = new TopNews();
-            int toprank = Consts.KR36_TOPRANK_DEFAULT - j * Consts.KR36_RANGE - new Random().nextInt(Consts.KR36_RANGE);
 
-            topNews.setTopid(snowflakeIdWorker.nextId());//
+            String sortindexStr = "1";
+
+            String toprankStr = Consts.TOPRANK_DEFAULT;
+            topNews.setTopid(snowflakeIdWorker.nextId());
             topNews.setMd5(MD5Util.md5(content + topNewsUrl.getNewsid(), "utf-8"));
             topNews.setSourceid(topNewsUrl.getNewsid());
             topNews.setSource(topNewsUrl.getNewsname());
 
-            topNews.setSortindex(j);
-            topNews.setToprank(toprank);
+            topNews.setSortindex(Integer.valueOf(sortindexStr));
+            topNews.setToprank(Integer.valueOf(toprankStr));
             topNews.setContent(content);
             topNews.setLinkurl(URL + linkurl);
             topNews.setPosttime(new Date());
 
             topNews.setNotestring("");
             topNews.setRemark("");
-            j++;
-
             list.add(topNews);
-
         }
         return list;
     }

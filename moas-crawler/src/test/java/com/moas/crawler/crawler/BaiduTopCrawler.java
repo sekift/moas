@@ -21,11 +21,7 @@ public class BaiduTopCrawler {
                     @Override
                     public void parse(Document html, Element pageVoElement, DynamicScheduleCrawler.PageVo pageVo) {
                         // 解析封装 PageVo 对象
-
                         Elements eles = pageVoElement.getElementsByClass("category-wrap_iQLoo horizontal_1eKyQ");
-                        System.out.println(eles);
-
-
                         Elements elements = eles.select("a");
                         for(int i=0;i<elements.size();i++){
                             Element e = elements.get(i);

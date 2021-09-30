@@ -1,20 +1,16 @@
 package com.moas.crawler.crawler;
 
-import com.moas.crawler.crawler.DynamicScheduleCrawler;
 import com.xuxueli.crawler.XxlCrawler;
 import com.xuxueli.crawler.parser.PageParser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class IyiouCrawler {
+public class CbstCrawler {
 
     public static void main(String args[]){
         XxlCrawler crawler = new XxlCrawler.Builder()
-                .setUrls("https://www.iyiou.com/briefing")
+                .setUrls("http://www.cbst.com.cn/news/index/id/25/p/1.html")
                 //.setWhiteUrlRegexs("https://gitee\\.com/xuxueli0323/projects\\?page=\\d+")
                 .setAllowSpread(false)
                 .setThreadCount(1)
@@ -22,22 +18,23 @@ public class IyiouCrawler {
                     @Override
                     public void parse(Document html, Element pageVoElement, DynamicScheduleCrawler.PageVo pageVo) {
                         // 解析封装 PageVo 对象
+//                        System.out.println(pageVoElement);
 
-                        Elements eles = pageVoElement.getElementsByClass("eo-line-clamp-2");
-                        System.out.println(eles.get(1));
+                        Elements eles = pageVoElement.getElementsByClass("ny-box");
+                        System.out.println(eles);
+
 
                         Elements elements = eles.select("a");
-
                         for(int i=0;i<elements.size();i++){
                             Element e = elements.get(i);
-                                    System.out.println(i + " " + e.text()+" "+e.attr("href"));//.
-                                    //System.out.println(i+" "+elements.get(i).select("a").attr("title")+" "+elements.get(i).select("a").attr("href"));
 
+                            if(e.hasText()&&e.hasAttr("href")) {
+                                String href = e.attr("href");
+                                if(href.contains("details")) {
+                                    System.out.println(e.getElementsByClass("new-list").select("p")+" "+ i+" "+e.text()+" "+href);
+                                }
+                            }
                         }
-
-                        List<Element> listEle = new ArrayList<Element>();
-
-
                     }
                 })
                 .build();
