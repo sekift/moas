@@ -59,12 +59,6 @@
 				"text": "热点"
 			},
 			{
-				"pagePath": "pages/coin/index",
-				"iconPath": "static/tag-0.png",
-				"selectedIconPath": "static/tag-1.png",
-				"text": "虚拟币"
-			},
-			{
 				"pagePath": "pages/ucenter/ucenter",
 				"iconPath": "static/center-0.png",
 				"selectedIconPath": "static/center-1.png",

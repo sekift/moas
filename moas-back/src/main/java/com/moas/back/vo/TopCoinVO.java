@@ -19,6 +19,8 @@ public class TopCoinVO {
 
     private BigDecimal low;
 
+    private String highLow;
+
     private BigDecimal lastDay;
 
     private BigDecimal last;
@@ -29,17 +31,29 @@ public class TopCoinVO {
 
     private BigDecimal sell;
 
+    private String buySell;
+
     private BigDecimal coinRange;
 
     private Date createTime;
 
-    private String diff10;
+    private BigDecimal diffLast10;
 
-    private String diff30;
+    private BigDecimal diffLast30;
 
-    private String diff60;
+    private BigDecimal diffLast60;
 
-    private String diff1260;
+    private BigDecimal diffLast1260;
 
-    private String diff2460;
+    private BigDecimal diffLast2460;
+
+    private BigDecimal diffVol10;
+
+    private BigDecimal diffVol30;
+
+    private BigDecimal diffVol60;
+
+    private BigDecimal diffVol1260;
+
+    private BigDecimal diffVol2460;
 }
