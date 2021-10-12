@@ -15,7 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 爬虫示例05：爬取公开的免费代理，生成动态代理池
@@ -97,8 +98,8 @@ public class XxlCrawlerTest05 {
 
         // 校验代理池    (代理方式请求IP地址查询网IP138，可从页面响应确认代理是否生效)
         logger.info("----------- proxy pool check -----------");
-        if (proxyPool!=null && proxyPool.size()>0) {
-            for (PageVo pageVo: proxyPool) {
+        if (proxyPool != null && proxyPool.size() > 0) {
+            for (PageVo pageVo : proxyPool) {
                 try {
                     Document html = JsoupUtil.load(new PageRequest("http://2018.ip138.com/ic.asp",
                             null,
@@ -109,7 +110,8 @@ public class XxlCrawlerTest05 {
                             false,
                             XxlCrawlerConf.TIMEOUT_MILLIS_DEFAULT,
                             false,
-                            new Proxy(Proxy.Type.HTTP, new InetSocketAddress(pageVo.getIp(), pageVo.getPort()))));
+                            new Proxy(Proxy.Type.HTTP, new InetSocketAddress(pageVo.getIp(), pageVo.getPort())))
+                    );
                     logger.info(pageVo + " : " + html.html());
                 } catch (Exception e) {
                     e.printStackTrace();

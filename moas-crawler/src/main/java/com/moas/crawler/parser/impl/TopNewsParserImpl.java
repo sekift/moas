@@ -17,61 +17,64 @@ import java.util.List;
 public class TopNewsParserImpl implements TopNewsParser {
 
     @Autowired
-    TopNewsService topNewsService;
+    private TopNewsService topNewsService;
 
     @Autowired
-    TopCoinService topCoinService;
+    private TopCoinService topCoinService;
 
     @Autowired
-    WeiboRealtimeHopParser weiboRealtimeHopParser;
+    private WeiboRealtimeHopParser weiboRealtimeHopParser;
 
     @Autowired
-    BaiduHopParser baiduHopParser;
+    private BaiduHopParser baiduHopParser;
 
     @Autowired
-    Qihu360Parser qihu360Parser;
+    private Qihu360Parser qihu360Parser;
 
     @Autowired
-    Kr36Parser kr36Parser;
+    private Kr36Parser kr36Parser;
 
     @Autowired
-    WxbParser wxbParser;
+    private WxbParser wxbParser;
 
     @Autowired
-    TechWebParser techWebParser;
+    private TechWebParser techWebParser;
 
     @Autowired
-    IiMediaParser iiMediaParser;
+    private IiMediaParser iiMediaParser;
 
     @Autowired
-    Cto51Parser cto51Parser;
+    private Cto51Parser cto51Parser;
 
     @Autowired
-    IyiouParser iyiouParser;
+    private IyiouParser iyiouParser;
 
     @Autowired
-    CsdnParser csdnParser;
+    private CsdnParser csdnParser;
 
     @Autowired
-    YqhParser yqhParser;
+    private YqhParser yqhParser;
 
     @Autowired
-    SegmentParser segmentParser;
+    private SegmentParser segmentParser;
 
     @Autowired
-    JianshuParser jianshuParser;
+    private JianshuParser jianshuParser;
 
     @Autowired
-    BitcoinParser bitcoinParser;
+    private BitcoinParser bitcoinParser;
 
     @Autowired
-    BishijieParser bishijieParser;
+    private BishijieParser bishijieParser;
 
     @Autowired
-    AexParser aexParser;
+    private AexParser aexParser;
 
     @Autowired
-    CbstParser cbstParser;
+    private CbstParser cbstParser;
+
+    @Autowired
+    private AminerParser aminerParser;
 
     List<TopNews> list = null;
 
@@ -103,6 +106,8 @@ public class TopNewsParserImpl implements TopNewsParser {
             list = bishijieParser.parser(topNewsUrl, element);
         }else if("饮料工业".equals(topNewsUrl.getNewsname())){
             list = cbstParser.parser(topNewsUrl, element);
+        }else if("AMiner资讯".equals(topNewsUrl.getNewsname())){
+            list = aminerParser.parser(topNewsUrl, element);
         }
         if(list != null && !list.isEmpty()) {
             topNewsService.insert(list);

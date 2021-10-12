@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.moas</groupId>
     <artifactId>moas-crawler</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>moas-crawler</name>
     <description>Moas SpringBoot Project</description>
@@ -35,7 +35,7 @@
         <beanutils.version>1.9.4</beanutils.version>
         <collections.version>3.2.2</collections.version>
         <htmlunit.version>2.37.0</htmlunit.version>
-        <guava.version>28.0-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <jdom.version>2.0.2</jdom.version>
         <!--<maven.war.plugin.version>2.6</maven.war.plugin.version>-->
         <mybatis.generator.plugin.version>1.3.2</mybatis.generator.plugin.version>
@@ -48,7 +48,7 @@
         <jsoup.version>1.11.3</jsoup.version>
         <selenium-java.version>3.14.0</selenium-java.version>
         <phantomjs.version>1.4.4</phantomjs.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <nltk.version>1.0</nltk.version>
     </properties>
 

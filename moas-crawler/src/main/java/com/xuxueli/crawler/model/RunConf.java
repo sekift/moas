@@ -181,5 +181,4 @@ public class RunConf {
 	public void setValidateTLSCertificates(boolean isValidateTLSCertificates) {
 		this.isValidateTLSCertificates = isValidateTLSCertificates;
 	}
-    
 }

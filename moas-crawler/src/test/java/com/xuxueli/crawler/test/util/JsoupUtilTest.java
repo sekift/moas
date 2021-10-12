@@ -26,7 +26,7 @@ public class JsoupUtilTest {
         String url = "http://www.baidu.com/";
 
         Document html = JsoupUtil.load(new PageRequest(url, null, null, null,
-                XxlCrawlerConf.USER_AGENT_CHROME, null, false, XxlCrawlerConf.TIMEOUT_MILLIS_DEFAULT, false, null));
+                XxlCrawlerConf.USER_AGENT_CHROME, null, false, XxlCrawlerConf.TIMEOUT_MILLIS_DEFAULT, false,null));
         logger.info(html.html());
     }
 
