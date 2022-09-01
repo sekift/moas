@@ -45,7 +45,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.test.skip>true</maven.test.skip>
-        <jsoup.version>1.11.3</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <selenium-java.version>3.14.0</selenium-java.version>
         <phantomjs.version>1.4.4</phantomjs.version>
         <junit.version>4.13.1</junit.version>
